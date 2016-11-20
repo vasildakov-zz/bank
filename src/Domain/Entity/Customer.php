@@ -19,10 +19,17 @@
          */
         private $transactions = [];
 
+        /**
+         * @var ValueObject\DateTime
+         */
+        private $createdAt;
+        
 
         public function __construct(Uuid $id)
         {
-            //
+            $this->id = $id;
+
+            $this->createdAt = new \DateTime();
         }
     }
 }
