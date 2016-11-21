@@ -10,14 +10,42 @@ class UuidTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider identityProvider
+     * @dataProvider uuid1Provider
      */
-    public function testObjectCanBeConstructedWithValidArguments($uuid, $expected)
+    public function testObjectCanBeConstructedWithValidUuid1($uuid, $expected)
     {
         self::assertInstanceOf(Uuid::class, new Uuid($uuid));
     }
 
-    public function identityProvider()
+
+    /**
+     * @dataProvider uuid4Provider
+     */
+    public function testObjectCanBeConstructedWithValidUuid4($uuid, $expected)
+    {
+        self::assertInstanceOf(Uuid::class, new Uuid($uuid));
+    }
+
+
+    /**
+     * @return array An array with valid UUID's Version 1
+     */
+    public function uuid1Provider()
+    {
+        return [
+            ['a8163e7a-afdc-11e6-80f5-76304dec7eb7', true],
+            ['a816441a-afdc-11e6-80f5-76304dec7eb7', true],
+            ['a8164636-afdc-11e6-80f5-76304dec7eb7', true],
+            ['a81647e4-afdc-11e6-80f5-76304dec7eb7', true],
+            ['a81649c4-afdc-11e6-80f5-76304dec7eb7', true],
+        ];
+    }
+
+
+    /**
+     * @return array An array with valid UUID's Version 4
+     */
+    public function uuid4Provider()
     {
         return [
             ['ce317f26-665c-4b34-9394-d700a08d4ede', true],
@@ -27,4 +55,5 @@ class UuidTest extends \PHPUnit_Framework_TestCase
             ['698e502f-69c7-4adc-b16f-cec40657a470', true],
         ];
     }
+
 }
