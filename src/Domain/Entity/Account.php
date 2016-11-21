@@ -37,9 +37,11 @@
         private $createdAt;
 
 
-        public function __construct(Uuid $id)
+        public function __construct(Uuid $id, Customer $customer)
         {
             $this->id = $id;
+
+            $this->customer = $customer;
 
             $this->createdAt = new \DateTime();
         }
