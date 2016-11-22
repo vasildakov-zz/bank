@@ -48,10 +48,8 @@ class Account implements AccountInterface
 
     public function __construct(Uuid $id, Customer $customer)
     {
-        $this->id = $id;
-
-        $this->customer = $customer;
-
+        $this->id        = $id;
+        $this->customer  = $customer;
         $this->createdAt = new \DateTime();
     }
 
@@ -66,23 +64,13 @@ class Account implements AccountInterface
     // public api
     public function deposit($amount)
     {
-        $this->addTransaction(
-            new Transaction(
-                new Money($amount),
-                Transaction::TYPE_CREDIT
-            )
-        );
+        $this->addTransaction(new Transaction(new Money($amount), Transaction::TYPE_CREDIT));
     }
 
 
     // public api
     public function withdraw($amount)
     {
-        $this->addTransaction(
-            new Transaction(
-                new Money($amount),
-                Transaction::TYPE_DEBIT
-            )
-        );
+        $this->addTransaction(new Transaction(new Money($amount), Transaction::TYPE_DEBIT));
     }
 }

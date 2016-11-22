@@ -38,14 +38,15 @@ class Customer implements CustomerInterface
      * @var ValueObject\DateTime
      */
     private $createdAt;
-    
 
+    /**
+     * @param Uuid  $id
+     * @param Email $email
+     */
     public function __construct(Uuid $id, Email $email)
     {
-        $this->id = $id;
-
-        $this->email = $email;
-
+        $this->id        = $id;
+        $this->email     = $email;
         $this->createdAt = new \DateTime();
     }
 
@@ -54,6 +55,7 @@ class Customer implements CustomerInterface
     {
         return $this->id;
     }
+
 
     public function email()
     {

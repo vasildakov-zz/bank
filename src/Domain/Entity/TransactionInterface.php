@@ -1,6 +1,5 @@
-<?php namespace Domain\Entity {
+<?php namespace Domain\Entity;
 
-    interface TransactionInterface
-    {
-    }
+interface TransactionInterface
+{
 }

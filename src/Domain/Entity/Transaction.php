@@ -46,7 +46,6 @@ class Transaction implements TransactionInterface
     public function __construct(Uuid $id, Account $account, Money $amount, $type)
     {
         $this->id = $id;
-
         $this->createdAt = new \DateTime();
     }
 
