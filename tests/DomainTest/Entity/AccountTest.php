@@ -7,8 +7,14 @@ use Domain\ValueObject\Uuid;
 
 class AccountTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Domain\ValueObject\Uuid
+     */
     private $id;
 
+    /**
+     * @var Domain\Entity\Customer
+     */
     private $customer;
 
     protected function setUp()

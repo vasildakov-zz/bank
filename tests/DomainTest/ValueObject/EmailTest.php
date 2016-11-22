@@ -13,7 +13,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
     public function testObjectCanBeConstructedWithValidArgument()
     {
         $email = new Email('vasildakov@gmail.com');
-        
+
         self::assertInstanceOf(Email::class, $email);
     }
 }

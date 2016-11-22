@@ -11,7 +11,7 @@ class CustomerTest extends \PHPUnit_Framework_TestCase
      * @var Domain\ValueObject\Uuid
      */
     private $id;
-    
+
     /**
      * @var Domain\ValueObject\Email
      */
