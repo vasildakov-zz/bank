@@ -1,6 +1,12 @@
-<?php namespace Domain\Repository {
+<?php
 
-    interface AccountRepositoryInterface
-    {
-    }
+namespace Domain\Repository;
+
+/**
+ * AccountRepositoryInterface
+ *
+ * @author Vasil Dakov <vasildakov@gmail.com>
+ */
+interface AccountRepositoryInterface
+{
 }

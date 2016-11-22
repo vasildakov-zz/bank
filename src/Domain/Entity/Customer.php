@@ -1,35 +1,62 @@
-<?php namespace Domain\Entity {
+<?php
 
-    use Domain\ValueObject\Uuid;
+declare(strict_types = 1);
 
-    class Customer implements CustomerInterface
+namespace Domain\Entity;
+
+use Domain\ValueObject\Uuid;
+use Domain\ValueObject\Email;
+
+/**
+ * Class Customer
+ *
+ * @author Vasil Dakov <vasildakov@gmail.com>
+ */
+class Customer implements CustomerInterface
+{
+    /**
+     * @var ValueObject\Uuid
+     */
+    private $id;
+
+    /**
+     * @var ValueObject\Email
+     */
+    private $email;
+
+    /**
+     * @var array
+     */
+    private $accounts = [];
+
+    /**
+     * @var array
+     */
+    private $transactions = [];
+
+    /**
+     * @var ValueObject\DateTime
+     */
+    private $createdAt;
+    
+
+    public function __construct(Uuid $id, Email $email)
     {
-        /**
-         * @var ValueObject\Uuid
-         */
-        private $id;
+        $this->id = $id;
 
-        /**
-         * @var array
-         */
-        private $accounts = [];
+        $this->email = $email;
 
-        /**
-         * @var array
-         */
-        private $transactions = [];
+        $this->createdAt = new \DateTime();
+    }
 
-        /**
-         * @var ValueObject\DateTime
-         */
-        private $createdAt;
-        
 
-        public function __construct(Uuid $id)
-        {
-            $this->id = $id;
+    public function getId()
+    {
+        return $this->id;
+    }
 
-            $this->createdAt = new \DateTime();
-        }
+    public function email()
+    {
+        return $this->email;
     }
 }

@@ -1,12 +1,15 @@
-<?php namespace Domain\Service {
+<?php
 
-    use Domain\ValueObject\Uuid;
+namespace Domain\Service;
 
-    /**
-     * $identity = (new Generator($adapter))();
-     */
-    interface IdentityGeneratorInterface
-    {
-        public function __invoke() : Uuid;
-    }
+use Domain\ValueObject\Uuid;
+
+/**
+ * IdentityGeneratorInterface
+ *
+ * @author Vasil Dakov <vasildakov@gmail.com>
+ */
+interface IdentityGeneratorInterface
+{
+    public function __invoke() : Uuid;
 }

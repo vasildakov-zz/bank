@@ -1,80 +1,88 @@
-<?php namespace Domain\Entity {
+<?php
 
-    use Domain\ValueObject\Uuid;
-    use Domain\ValueObject\Money;
-    use Domain\ValueObject\Currency;
+declare(strict_types = 1);
 
-    class Account implements AccountInterface
+namespace Domain\Entity;
+
+use Domain\ValueObject\Uuid;
+use Domain\ValueObject\Money;
+use Domain\ValueObject\Currency;
+
+/**
+ * Class Account
+ *
+ * @author Vasil Dakov <vasildakov@gmail.com>
+ */
+class Account implements AccountInterface
+{
+    /**
+     * @var ValueObject\Uuid
+     */
+    private $id;
+
+    /**
+     * @var float
+     */
+    private $balance;
+
+    /**
+     * @var Entity\Customer
+     */
+    private $customer;
+
+    /**
+     * @var Entity\Transaction
+     */
+    private $transactions;
+
+    /**
+     * @var ValueObject\Currency
+     */
+    private $currency;
+
+    /**
+     * @var ValueObject\DateTime
+     */
+    private $createdAt;
+
+
+    public function __construct(Uuid $id, Customer $customer)
     {
-        /**
-         * @var ValueObject\Uuid
-         */
-        private $id;
+        $this->id = $id;
 
-        /**
-         * @var float
-         */
-        private $balance;
+        $this->customer = $customer;
 
-        /**
-         * @var Entity\Customer
-         */
-        private $customer;
-
-        /**
-         * @var Entity\Transaction
-         */
-        private $transactions;
-
-        /**
-         * @var ValueObject\Currency
-         */
-        private $currency;
-
-        /**
-         * @var ValueObject\DateTime
-         */
-        private $createdAt;
+        $this->createdAt = new \DateTime();
+    }
 
 
-        public function __construct(Uuid $id, Customer $customer)
-        {
-            $this->id = $id;
-
-            $this->customer = $customer;
-
-            $this->createdAt = new \DateTime();
-        }
+    // private
+    private function addTransaction(Transaction $transaction)
+    {
+        $this->transactions->add($transaction);
+    }
 
 
-        // private
-        private function addTransaction(Transaction $transaction)
-        {
-            $this->transactions->add($transaction);
-        }
+    // public api
+    public function deposit($amount)
+    {
+        $this->addTransaction(
+            new Transaction(
+                new Money($amount),
+                Transaction::TYPE_CREDIT
+            )
+        );
+    }
 
 
-        // public api
-        public function deposit($amount)
-        {
-            $this->addTransaction(
-                new Transaction(
-                    new Money($amount),
-                    Transaction::TYPE_CREDIT
-                )
-            );
-        }
-
-
-        // public api
-        public function withdraw($amount)
-        {
-            $this->addTransaction(
-                new Transaction(
-                    new Money($amount),
-                    Transaction::TYPE_DEBIT
-                )
-            );
-        }
+    // public api
+    public function withdraw($amount)
+    {
+        $this->addTransaction(
+            new Transaction(
+                new Money($amount),
+                Transaction::TYPE_DEBIT
+            )
+        );
     }
 }
