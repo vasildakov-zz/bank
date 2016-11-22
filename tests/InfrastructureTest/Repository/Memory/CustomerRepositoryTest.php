@@ -73,4 +73,21 @@ class CustomerRepositoryTest extends \PHPUnit_Framework_TestCase
         self::assertInstanceOf(Customer::class, $result);
         self::assertEquals($customer, $result);
     }
+
+
+    public function testFindReturnsObject()
+    {
+        $customer = new Customer(
+            new Uuid('ed8a48c6-a38a-47fd-a8eb-d9738308b488'),
+            new Email('john.doe@gmail.com')
+        );
+
+        $repository = new CustomerRepository;
+        $repository->persist($customer);
+
+        $result = $repository->find($customer->id());
+
+        self::assertInstanceOf(Customer::class, $result);
+        self::assertEquals($customer, $result);
+    }
 }

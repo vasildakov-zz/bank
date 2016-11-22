@@ -32,6 +32,11 @@ class Uuid
         $this->value = $value;
     }
 
+    public function equals(Uuid $other)
+    {
+        return strtolower((string) $this) === strtolower((string) $other);
+    }
+
     public function __toString()
     {
         return (string) $this->value;

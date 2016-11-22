@@ -6,6 +6,7 @@ namespace Domain\Entity;
 
 use Domain\ValueObject\Uuid;
 use Domain\ValueObject\Email;
+use Domain\Adapter\ArrayCollection;
 
 /**
  * Class Customer
@@ -45,13 +46,17 @@ class Customer implements CustomerInterface
      */
     public function __construct(Uuid $id, Email $email)
     {
-        $this->id        = $id;
-        $this->email     = $email;
+        $this->id = $id;
+        $this->email = $email;
+
+        $this->accounts = new ArrayCollection();
+        $this->transactions = new ArrayCollection();
+
         $this->createdAt = new \DateTime();
     }
 
 
-    public function getId()
+    public function id()
     {
         return $this->id;
     }

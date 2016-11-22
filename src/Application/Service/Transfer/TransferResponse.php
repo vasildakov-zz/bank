@@ -10,4 +10,8 @@ namespace Application\Service\Transfer;
  */
 class TransferResponse
 {
+    public function __construct()
+    {
+        //
+    }
 }

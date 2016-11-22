@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Infrastructure\Repository\Memory;
 
+use Domain\ValueObject\Uuid;
 use Domain\ValueObject\Email;
 use Domain\Entity\Customer;
 use Domain\Repository\CustomerRepositoryInterface;
@@ -13,18 +14,19 @@ use Domain\Repository\CustomerRepositoryInterface;
  *
  * @author Vasil Dakov <vasildakov@gmail.com>
  */
-final class CustomerRepository implements CustomerRepositoryInterface
+final class CustomerRepository extends AbstractMemoryRepository implements CustomerRepositoryInterface
 {
-    /**
-     * @var array
-     */
-    private $data;
 
-
-    public function __construct()
+    public function find(Uuid $id)
     {
-        $this->data = [];
+        foreach ($this->items as $customer) {
+            if ($customer->id()->equals($id)) {
+                return $customer;
+            }
+        }
+        return null;
     }
+
 
     /**
      * Removes customer from the collection
@@ -34,9 +36,9 @@ final class CustomerRepository implements CustomerRepositoryInterface
      */
     public function remove(Customer $customer)
     {
-        $key = (string)$customer->getId();
-        if (isset($this->data[$key])) {
-            unset($this->data[$key]);
+        $key = (string)$customer->id();
+        if (isset($this->items[$key])) {
+            unset($this->items[$key]);
         }
     }
 
@@ -48,27 +50,22 @@ final class CustomerRepository implements CustomerRepositoryInterface
      */
     public function persist(Customer $customer)
     {
-        $key = (string)$customer->getId();
+        $key = (string)$customer->id();
 
-        if (isset($this->data[$key])) {
+        if (isset($this->items[$key])) {
             throw new \Exception("Customer with ID $key is already exist.");
         }
 
-        $this->data[$key] = $customer;
+        $this->items[$key] = $customer;
     }
 
-
-    public function count()
-    {
-        return count($this->data);
-    }
 
     /**
      * @return Customer[]
      */
     public function findAll()
     {
-        return $this->data;
+        return $this->items;
     }
 
     /**
@@ -77,14 +74,15 @@ final class CustomerRepository implements CustomerRepositoryInterface
      */
     public function findOneByEmail(Email $email)
     {
-        foreach ($this->data as $customer) {
+        foreach ($this->items as $customer) {
             if ($customer->email()->equals($email)) {
                 return $customer;
             }
         }
         return null;
 
-        /* $key = array_search($email, array_column($array, 'email'));
-        return ($key) ? $this->data[$key] : null; */
+        /*
+        $key = array_search($email, array_column($array, 'email'));
+        return ($key) ? $this->items[$key] : null; */
     }
 }
