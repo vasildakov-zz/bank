@@ -21,10 +21,6 @@ class Uuid
      */
     public function __construct($value)
     {
-        if (!is_string($value)) {
-            throw new \InvalidArgumentException;
-        }
-
         if (!\preg_match(self::REGEX_UUID, $value)) {
             throw new \InvalidArgumentException;
         }

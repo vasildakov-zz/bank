@@ -1,6 +1,9 @@
 <?php
 namespace DomainTest\ValueObject;
 
+use Faker\Provider;
+use Faker;
+
 use Domain\ValueObject\Uuid;
 use Domain\ValueObject\Email;
 use Domain\Entity\Customer;
@@ -24,6 +27,8 @@ class CustomerRepositoryTest extends \PHPUnit_Framework_TestCase
     {
         $this->id    = $this->prophesize(Uuid::class)->reveal();
         $this->email = $this->prophesize(Email::class)->reveal();
+
+        $this->provider = Faker\Factory::create();
     }
 
 
@@ -42,13 +47,13 @@ class CustomerRepositoryTest extends \PHPUnit_Framework_TestCase
         self::assertEquals(0, $repository->count());
 
         $customer1 = new Customer(
-            new Uuid('3d1ff8e9-1b07-4685-bc44-740d696faed3'),
-            new Email('vasildakov@gmail.com')
+            new Uuid($this->provider->uuid()),
+            new Email($this->provider->email())
         );
 
         $customer2 = new Customer(
-            new Uuid('ed8a48c6-a38a-47fd-a8eb-d9738308b488'),
-            new Email('john.doe@gmail.com')
+            new Uuid($this->provider->uuid()),
+            new Email($this->provider->email())
         );
 
         $repository->persist($customer1);
@@ -58,11 +63,31 @@ class CustomerRepositoryTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function testFindOneByEmailReturnsObject()
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessageRegExp /Customer with ID \w+/
+     */
+    public function testPersistThrowsAnException()
+    {
+        $repository = new CustomerRepository;
+
+        self::assertEquals(0, $repository->count());
+
+        $customer = new Customer(
+            new Uuid($this->provider->uuid()),
+            new Email($this->provider->email())
+        );
+
+        $repository->persist($customer);
+        $repository->persist($customer);
+    }
+
+
+    public function testFindOneByEmailCanReturnObject()
     {
         $customer = new Customer(
-            new Uuid('ed8a48c6-a38a-47fd-a8eb-d9738308b488'),
-            new Email('john.doe@gmail.com')
+            new Uuid($this->provider->uuid()),
+            new Email($this->provider->email())
         );
 
         $repository = new CustomerRepository;
@@ -75,7 +100,19 @@ class CustomerRepositoryTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function testFindReturnsObject()
+    public function testFindOneByEmailCanReturnNull()
+    {
+        $repository = new CustomerRepository;
+
+        self::assertNull(
+            $repository->findOneByEmail(
+                new Email('john.doe@gmail.com')
+            )
+        );
+    }
+
+
+    public function testFindCanReturnObject()
     {
         $customer = new Customer(
             new Uuid('ed8a48c6-a38a-47fd-a8eb-d9738308b488'),
@@ -89,5 +126,42 @@ class CustomerRepositoryTest extends \PHPUnit_Framework_TestCase
 
         self::assertInstanceOf(Customer::class, $result);
         self::assertEquals($customer, $result);
+    }
+
+
+    public function testFindCanReturnNull()
+    {
+        $repository = new CustomerRepository;
+
+        self::assertNull(
+            $repository->find(
+                new Uuid('ed8a48c6-a38a-47fd-a8eb-d9738308b488')
+            )
+        );
+    }
+
+
+    public function testCanRemoveObject()
+    {
+        $customer = new Customer(
+            new Uuid('ed8a48c6-a38a-47fd-a8eb-d9738308b488'),
+            new Email('john.doe@gmail.com')
+        );
+
+        $repository = new CustomerRepository;
+        $repository->persist($customer);
+
+        self::assertEquals(1, $repository->count());
+
+        $repository->remove($customer);
+
+        self::assertEquals(0, $repository->count());
+    }
+
+
+    public function testFindAllReturnAnArray()
+    {
+        $repository = new CustomerRepository;
+        self::assertInternalType('array', $repository->findAll());
     }
 }

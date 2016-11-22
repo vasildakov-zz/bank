@@ -53,7 +53,7 @@ final class CustomerRepository extends AbstractMemoryRepository implements Custo
         $key = (string)$customer->id();
 
         if (isset($this->items[$key])) {
-            throw new \Exception("Customer with ID $key is already exist.");
+            throw new \Exception("Customer with ID $key already exist.");
         }
 
         $this->items[$key] = $customer;
