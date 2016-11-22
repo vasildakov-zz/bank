@@ -106,7 +106,7 @@ class CustomerRepositoryTest extends \PHPUnit_Framework_TestCase
 
         self::assertNull(
             $repository->findOneByEmail(
-                new Email('john.doe@gmail.com')
+                new Email($this->provider->email())
             )
         );
     }
@@ -115,8 +115,8 @@ class CustomerRepositoryTest extends \PHPUnit_Framework_TestCase
     public function testFindCanReturnObject()
     {
         $customer = new Customer(
-            new Uuid('ed8a48c6-a38a-47fd-a8eb-d9738308b488'),
-            new Email('john.doe@gmail.com')
+            new Uuid($this->provider->uuid()),
+            new Email($this->provider->email())
         );
 
         $repository = new CustomerRepository;
@@ -135,7 +135,7 @@ class CustomerRepositoryTest extends \PHPUnit_Framework_TestCase
 
         self::assertNull(
             $repository->find(
-                new Uuid('ed8a48c6-a38a-47fd-a8eb-d9738308b488')
+                new Uuid($this->provider->uuid())
             )
         );
     }
@@ -144,8 +144,8 @@ class CustomerRepositoryTest extends \PHPUnit_Framework_TestCase
     public function testCanRemoveObject()
     {
         $customer = new Customer(
-            new Uuid('ed8a48c6-a38a-47fd-a8eb-d9738308b488'),
-            new Email('john.doe@gmail.com')
+            new Uuid($this->provider->uuid()),
+            new Email($this->provider->email())
         );
 
         $repository = new CustomerRepository;
