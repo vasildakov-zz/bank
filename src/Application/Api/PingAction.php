@@ -7,7 +7,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Zend\Diactoros\Response\JsonResponse;
 use League\Tactician\CommandBus;
-
 use Domain\Command\PingCommand;
 
 /**
@@ -18,12 +17,12 @@ use Domain\Command\PingCommand;
 class PingAction
 {
     /**
-     * @var League\Tactician\CommandBus
+     * @var CommandBus
      */
     private $bus;
 
     /**
-     * @param League\Tactician\CommandBus $bus
+     * @param CommandBus $bus
      */
     public function __construct(CommandBus $bus)
     {
@@ -34,16 +33,16 @@ class PingAction
      * @param  ServerRequestInterface $request
      * @param  ResponseInterface      $response
      * @param  callable|null          $next
-     * @return JsonResponse
+     * @return Response
      */
     public function __invoke(Request $request, Response $response, callable $next = null)
     {
         $command = new PingCommand();
 
-        $time = $command->getCommandTime();
-
         $this->bus->handle($command);
 
-        return new JsonResponse(['ack' => $time]);
+        return new JsonResponse([
+            'ack' => $command->time()
+        ]);
     }
 }

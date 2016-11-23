@@ -1,18 +1,24 @@
 <?php
+declare(strict_types = 1);
 
 namespace Domain\Command;
 
+/**
+ * Class PingCommand
+ *
+ * @author Vasil Dakov <vasildakov@gmail.com>
+ */
 class PingCommand
 {
-    private $commandTime;
+    private $time;
 
     public function __construct()
     {
-        $this->commandTime = time();
+        $this->time = time();
     }
 
-    public function getCommandTime()
+    public function time()
     {
-        return $this->commandTime;
+        return $this->time;
     }
 }

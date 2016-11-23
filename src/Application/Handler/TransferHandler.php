@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
  *
  * @author Vasil Dakov <vasildakov@gmail.com>
  */
-class TransferHandler
+final class TransferHandler
 {
     /**
      * @var AccountRepositoryInterface
@@ -27,9 +27,12 @@ class TransferHandler
 
     /**
      * @param AccountRepositoryInterface $accounts
+     * @param LoggerInterface $logger
      */
-    public function __construct(AccountRepositoryInterface $accounts, LoggerInterface $logger)
-    {
+    public function __construct(
+        AccountRepositoryInterface $accounts,
+        LoggerInterface $logger
+    ) {
         $this->accounts = $accounts;
         $this->logger   = $logger;
     }
@@ -37,7 +40,7 @@ class TransferHandler
 
     /**
      * @param  MakeTransferCommand $command
-     * @return
+     * @return void
      */
     public function __invoke(MakeTransferCommand $command)
     {
@@ -49,6 +52,9 @@ class TransferHandler
         $source->withdraw($money);
         $destination->deposit($money);
 
-        $this->logger->info('Transfer from %s to %s');
+        $this->logger->info(sprintf('Transfer from %s to %s',
+            $command->source(),
+            $command->destination()
+        ));
     }
 }

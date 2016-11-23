@@ -11,8 +11,16 @@ use Symfony\Component\Console\Output\OutputInterface;
 use League\Tactician\CommandBus;
 use Domain\Transfer\MakeTransferCommand;
 
+/**
+ * Class TransferCommand
+ *
+ * @author Vasil Dakov <vasildakov@gmail.com>
+ */
 class TransferCommand extends Command
 {
+    /**
+     * @var CommandBus
+     */
     private $bus;
 
     /**

@@ -13,6 +13,11 @@ use Interop\Container\ContainerInterface;
 use Domain\Command\PingCommand;
 use Application\Handler\PingHandler;
 
+/**
+ * Class CommandBusFactory
+ *
+ * @author Vasil Dakov <vasildakov@gmail.com>
+ */
 class CommandBusFactory
 {
     /**

@@ -11,7 +11,7 @@ use Psr\Log\LoggerInterface;
  *
  * @author Vasil Dakov <vasildakov@gmail.com>
  */
-class PingHandler
+final class PingHandler
 {
     /**
      * @var LoggerInterface
@@ -34,7 +34,7 @@ class PingHandler
      */
     public function __invoke(PingCommand $command)
     {
-        $commandTime = $command->getCommandTime();
-        $this->logger->info(sprintf('Ping %s', $commandTime));
+        $time = $command->time();
+        $this->logger->info(sprintf('Ping time %s', $time));
     }
 }

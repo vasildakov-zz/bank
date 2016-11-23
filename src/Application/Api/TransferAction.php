@@ -8,6 +8,11 @@ use Psr\Http\Message\ServerRequestInterface as Response;
 use League\Tactician\CommandBus;
 use Domain\Transfer\MakeTransferCommand;
 
+/**
+ * Class TransferAction
+ *
+ * @author Vasil Dakov <vasildakov@gmail.com>
+ */
 class TransferAction
 {
     /**
