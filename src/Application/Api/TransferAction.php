@@ -16,19 +16,24 @@ use Domain\Transfer\MakeTransferCommand;
 class TransferAction
 {
     /**
-     * @var League\Tactician\CommandBus
+     * @var CommandBus
      */
     private $bus;
 
     /**
-     * @param League\Tactician\CommandBus
+     * @param CommandBus
      */
     public function __construct(CommandBus $bus)
     {
         $this->bus = $bus;
     }
 
-
+    /**
+     * @param  Request  $request
+     * @param  Response $response
+     * @param  callable $next
+     * @return Response
+     */
     public function __invoke(Request $request, Response $response, $next)
     {
         $this->bus->execute(

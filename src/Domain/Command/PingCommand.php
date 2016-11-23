@@ -8,7 +8,7 @@ namespace Domain\Command;
  *
  * @author Vasil Dakov <vasildakov@gmail.com>
  */
-class PingCommand
+final class PingCommand implements Command
 {
     private $time;
 

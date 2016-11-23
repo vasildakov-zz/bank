@@ -10,7 +10,7 @@ namespace Domain\Command;
  *
  * @author Vasil Dakov <vasildakov@gmail.com>
  */
-class MakeTransferCommand
+final class MakeTransferCommand implements Command
 {
     /**
      * @var string

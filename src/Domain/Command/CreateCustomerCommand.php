@@ -9,7 +9,7 @@ namespace Domain\Command;
  *
  * @author Vasil Dakov <vasildakov@gmail.com>
  */
-class CreateCustomerCommand
+final class CreateCustomerCommand implements Command
 {
     /**
      * @var string
@@ -21,15 +21,20 @@ class CreateCustomerCommand
      */
     private $email;
 
+    /**
+     * @var string
+     */
+    private $password;
 
     /**
      * @param string  $id
      * @param string  $email
      */
-    public function __construct(string $id, string $email)
+    public function __construct(string $id, string $email, string $password)
     {
-        $this->id    = $id;
+        $this->id = $id;
         $this->email = $email;
+        $this->password = $password;
     }
 
     /**
@@ -46,5 +51,13 @@ class CreateCustomerCommand
     public function email() : string
     {
         return $this->email;
+    }
+
+    /**
+     * @return string
+     */
+    public function password() : string
+    {
+        return $this->password;
     }
 }
