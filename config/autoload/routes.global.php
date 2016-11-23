@@ -8,7 +8,7 @@ return [
         'factories' => [
             //Middleware\HomePageAction::class => Middleware\HomePageFactory::class,
             //Middleware\BooksAction::class => Middleware\BooksActionFactory::class,
-            Application\Api\PingAction::class => Application\Api\PingActionFactory::class,
+            Application\Api\PingAction::class     => Application\Api\PingActionFactory::class,
             Application\Api\TransferAction::class => Application\Api\TransferActionFactory::class,
         ],
     ],

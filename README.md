@@ -13,9 +13,8 @@ $ composer require :vendor/:package_name
 
 ## Usage
 
-``` php
-$skeleton = new League\Skeleton();
-echo $skeleton->echoPhrase('Hello, League!');
+``` bash
+$ php -S 0.0.0.0:9000 -t public/ public/api.php
 ```
 
 ## Change log
