@@ -1,7 +1,6 @@
 <?php
 namespace DomainTest\ValueObject;
 
-use Faker\Provider;
 use Faker;
 
 use Domain\ValueObject\Uuid;
