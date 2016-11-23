@@ -65,13 +65,17 @@ class Customer implements CustomerInterface
         $this->createdAt = new \DateTime();
     }
 
-
+    /**
+     * @return Uuid $id
+     */
     public function id()
     {
         return $this->id;
     }
 
-
+    /**
+     * @return Email $email
+     */
     public function email()
     {
         return $this->email;

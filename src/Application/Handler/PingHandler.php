@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Application\Handler;
 
-use Domain\Command\PingCommand;
+use Application\Service\Ping\PingCommand;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -29,7 +29,7 @@ final class PingHandler implements Handler
 
 
     /**
-     * @param  Domain\Command\PingCommand $command
+     * @param  PingCommand $command
      * @return
      */
     public function __invoke(PingCommand $command)

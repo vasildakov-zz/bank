@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace Domain\Command;
+namespace Application\Service\Customer;
 
 /**
  * Class CreateCustomerCommand
  *
  * @author Vasil Dakov <vasildakov@gmail.com>
  */
-final class CreateCustomerCommand implements Command
+final class CreateCustomerCommand
 {
     /**
      * @var string

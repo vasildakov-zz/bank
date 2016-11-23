@@ -52,9 +52,6 @@ final class TransferHandler implements Handler
         $source->withdraw($money);
         $destination->deposit($money);
 
-        $this->logger->info(sprintf('Transfer from %s to %s',
-            $command->source(),
-            $command->destination()
-        ));
+        $this->logger->info(sprintf('Transfer from %s to %s', $command->source(), $command->destination()));
     }
 }

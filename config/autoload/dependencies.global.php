@@ -18,13 +18,20 @@ return [
         ],
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories' => [
+            // Expressive
             Application::class => ApplicationFactory::class,
             Helper\UrlHelper::class => Helper\UrlHelperFactory::class,
-            \League\Tactician\CommandBus::class => \Application\Container\CommandBusFactory::class,
-            \Monolog\Logger::class => \Application\Container\MonologFactory::class,
-            \Application\Handler\PingHandler::class => \Application\Handler\PingHandlerFactory::class,
 
-            Doctrine\ORM\EntityManager::class => \Infrastructure\Persistence\Doctrine\EntityManagerFactory::class,
+            // CommandBus
+            League\Tactician\CommandBus::class => Infrastructure\CommandBus\CommandBusFactory::class,
+
+            // Logger
+            Monolog\Logger::class => Infrastructure\Logger\MonologFactory::class,
+            
+            // Doctrine
+            Doctrine\ORM\EntityManager::class => Infrastructure\Persistence\Doctrine\EntityManagerFactory::class,
+
+            \Application\Handler\PingHandler::class => \Application\Handler\PingHandlerFactory::class,
         ],
     ],
 ];

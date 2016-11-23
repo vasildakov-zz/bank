@@ -8,8 +8,8 @@ return [
         'factories' => [
             //Middleware\HomePageAction::class => Middleware\HomePageFactory::class,
             //Middleware\BooksAction::class => Middleware\BooksActionFactory::class,
-            Application\Api\PingAction::class     => Application\Api\PingActionFactory::class,
-            Application\Api\TransferAction::class => Application\Api\TransferActionFactory::class,
+            Infrastructure\Ui\Api\PingAction::class     => Infrastructure\Ui\Api\PingActionFactory::class,
+            Infrastructure\Ui\Api\TransferAction::class => Infrastructure\Ui\Api\TransferActionFactory::class,
         ],
     ],
 
@@ -23,7 +23,7 @@ return [
         [
             'name' => 'api.ping',
             'path' => '/api/ping',
-            'middleware' => Application\Api\PingAction::class,
+            'middleware' => Infrastructure\Ui\Api\PingAction::class,
             'allowed_methods' => ['GET'],
         ],
         /*[

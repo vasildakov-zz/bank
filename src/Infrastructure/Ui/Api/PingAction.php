@@ -1,13 +1,14 @@
 <?php
 declare(strict_types = 1);
 
-namespace Application\Api;
+namespace Infrastructure\Ui\Api;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Zend\Diactoros\Response\JsonResponse;
 use League\Tactician\CommandBus;
-use Domain\Command\PingCommand;
+
+use Application\Service\Ping\PingCommand;
 
 /**
  * Class PingAction

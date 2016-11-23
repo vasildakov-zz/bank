@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Application\Container;
+namespace Infrastructure\CommandBus;
 
 use League\Tactician\CommandBus;
 use League\Tactician\Handler\CommandHandlerMiddleware;
@@ -10,7 +10,7 @@ use League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor;
 use League\Tactician\Handler\MethodNameInflector\InvokeInflector;
 use Interop\Container\ContainerInterface;
 
-use Domain\Command\PingCommand;
+use Application\Service\Ping\PingCommand;
 use Application\Handler\PingHandler;
 
 /**

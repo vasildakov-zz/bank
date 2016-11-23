@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Application\Api;
+namespace Infrastructure\Ui\Api;
 
 use Interop\Container\ContainerInterface;
 use League\Tactician\CommandBus;

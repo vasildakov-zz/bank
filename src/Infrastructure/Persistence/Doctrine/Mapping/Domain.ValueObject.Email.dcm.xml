@@ -8,4 +8,5 @@
     <embeddable name="Domain\ValueObject\Email">
         <field name="value" column="email" type="string" length="80" />
     </embeddable>
+    
 </doctrine-mapping>

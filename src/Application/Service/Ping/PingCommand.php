@@ -1,14 +1,14 @@
 <?php
 declare(strict_types = 1);
 
-namespace Domain\Command;
+namespace Application\Service\Ping;
 
 /**
  * Class PingCommand
  *
  * @author Vasil Dakov <vasildakov@gmail.com>
  */
-final class PingCommand implements Command
+final class PingCommand
 {
     private $time;
 

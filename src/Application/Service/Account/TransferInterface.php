@@ -1,5 +1,5 @@
 <?php
-namespace Application\Service\Transfer;
+namespace Application\Service\Account;
 
 use Domain\Repository\AccountRepositoryInterface;
 use Domain\ValueObject\Money;

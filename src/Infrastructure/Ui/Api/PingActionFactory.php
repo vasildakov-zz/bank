@@ -1,21 +1,21 @@
 <?php
 declare(strict_types = 1);
 
-namespace Application\Cli;
+namespace Infrastructure\Ui\Api;
 
 use Interop\Container\ContainerInterface;
 use League\Tactician\CommandBus;
 
 /**
- * Class TransferCommandFactory
+ * Class PingAction
  *
  * @author Vasil Dakov <vasildakov@gmail.com>
  */
-class TransferCommandFactory
+class PingActionFactory
 {
     /**
      * @param  ContainerInterface $container
-     * @return TransferCommand
+     * @return PingAction
      */
     public function __invoke(ContainerInterface $container)
     {
@@ -25,6 +25,6 @@ class TransferCommandFactory
 
         $bus = $container->get(CommandBus::class);
 
-        return new TransferCommand($bus);
+        return new PingAction($bus);
     }
 }

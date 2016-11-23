@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Application\Container;
+namespace Infrastructure\Logger;
 
 use Interop\Container\ContainerInterface;
 use Monolog\Logger;
