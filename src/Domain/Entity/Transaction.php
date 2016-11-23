@@ -17,6 +17,11 @@ class Transaction implements TransactionInterface
 
     const TYPE_DEBIT  = 2;
 
+
+    const STATUS_PENDING   = 1;
+
+    const STATUS_APPROVED  = 2;
+
     /**
      * @var ValueObject\Uuid
      */
@@ -41,6 +46,9 @@ class Transaction implements TransactionInterface
      * @var ValueObject\DateTime
      */
     private $createdAt;
+
+
+    private $status;
 
 
     public function __construct(Uuid $id, Account $account, Money $amount, $type)

@@ -11,7 +11,7 @@ use Psr\Log\LoggerInterface;
  *
  * @author Vasil Dakov <vasildakov@gmail.com>
  */
-final class PingHandler
+final class PingHandler implements Handler
 {
     /**
      * @var LoggerInterface

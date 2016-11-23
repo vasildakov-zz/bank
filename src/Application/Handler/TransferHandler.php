@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
  *
  * @author Vasil Dakov <vasildakov@gmail.com>
  */
-final class TransferHandler
+final class TransferHandler implements Handler
 {
     /**
      * @var AccountRepositoryInterface
