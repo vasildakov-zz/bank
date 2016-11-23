@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                        http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+    <entity name="Domain\Entity\Customer" table="customer" schema="bank">
+
+        <!-- definition here -->
+        <indexes>
+            <index name="name_idx" columns="first_name" />
+            <index columns="first_name" />
+        </indexes>
+
+        <id name="id" type="string">
+            <generator strategy="UUID" />
+        </id>
+
+        <field name="firstName" column="first_name" type="string" />
+        <field name="lastName"  column="last_name"  type="string" />
+        <field name="createdAt" column="created_at" type="datetime" />
+
+        <embedded name="email" column="email" class="Domain\ValueObject\Email" use-column-prefix="false" />
+    </entity>
+
+</doctrine-mapping>

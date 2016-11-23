@@ -26,6 +26,16 @@ class Customer implements CustomerInterface
     private $email;
 
     /**
+     * @var string
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     */
+    private $lastName;
+
+    /**
      * @var array
      */
     private $accounts = [];

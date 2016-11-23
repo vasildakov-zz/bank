@@ -2,6 +2,7 @@
 use Zend\Expressive\Application;
 use Zend\Expressive\Container\ApplicationFactory;
 use Zend\Expressive\Helper;
+use Doctrine\ORM\EntityManager;
 
 return [
     // Provides application-wide services.
@@ -23,7 +24,7 @@ return [
             \Monolog\Logger::class => \Application\Container\MonologFactory::class,
             \Application\Handler\PingHandler::class => \Application\Handler\PingHandlerFactory::class,
 
-            //Doctrine\ORM\EntityManager::class => Infrastructure\Persistence\Doctrine\EntityManagerFactory::class,
+            Doctrine\ORM\EntityManager::class => \Infrastructure\Persistence\Doctrine\EntityManagerFactory::class,
         ],
     ],
 ];
