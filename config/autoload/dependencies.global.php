@@ -27,7 +27,7 @@ return [
 
             // Logger
             Monolog\Logger::class => Infrastructure\Logger\MonologFactory::class,
-            
+
             // Doctrine
             Doctrine\ORM\EntityManager::class => Infrastructure\Persistence\Doctrine\EntityManagerFactory::class,
 

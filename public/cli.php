@@ -9,12 +9,19 @@
  */
 use Symfony\Component\Console\Application;
 use Application\Service;
-use Infrastructure\Cli\Command;
+use Presentation\Cli\PingCommand;
 
 chdir(dirname(__DIR__));
 
 require 'vendor/autoload.php';
 
+$container = require 'config/container.php';
+$container->setService(Application::class, new Application('Bank Cli Application', '1.0'));
+
+#var_dump($container->get(PingCommand::class));
+#exit();
+
+/*
 $container = new \Pimple\Container();
 
 $container[Service\BookService::class] = function($container) {
@@ -40,4 +47,17 @@ $container[Application::class] = function($container) {
 };
 
 $application = $container[Application::class];
+$application->run();
+*/
+
+
+//$application = new Application("Bank CLI Application", '1.0');
+//$application->run();
+
+$application = $container->get(Application::class);
+
+$application->addCommands([
+    $container->get(Presentation\Cli\PingCommand::class),
+]);
+
 $application->run();
